@@ -2,10 +2,17 @@
 Electronic Coursework Submission (ECS) system
 
 Contributors:
+
 Gurjeet Matharu /n
+
 Wise Edwards
+
 Louise Jefford
+
 Rahul Dadhania
+
 Alex Lawrence
+
 Kenneth Yung
+
 Tom Douch
