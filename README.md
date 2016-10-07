@@ -3,7 +3,7 @@ Electronic Coursework Submission (ECS) system
 
 Contributors:
 
-Gurjeet Matharu /n
+Gurjeet Matharu
 
 Wise Edwards
 
