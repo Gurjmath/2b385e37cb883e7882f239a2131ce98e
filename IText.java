@@ -28,7 +28,7 @@ public class IText {
         
         try{
             Document document  = new Document();
-            PdfWriter.getInstance(document, new FileOutputStream("C:\\Users\\Kenneth\\Desktop\\sample.pdf"));
+            PdfWriter.getInstance(document, new FileOutputStream("[Please Enter the Path Here]sample.pdf"));
             document.open();
             document.add(new Paragraph("Example"));
             document.close();
