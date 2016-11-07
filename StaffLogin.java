@@ -134,11 +134,33 @@ public class StaffLogin extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
-        try {
+             try {
             int check = 1;
             Connection connectionToDB = DriverManager.getConnection("jdbc:derby://localhost:1527/Data","admin2","password");
             Statement statement = connectionToDB.createStatement();
             ResultSet queryResultsFromDatabase = statement.executeQuery("select * from STAFF_DETAILS");
+
+            // while the resultSet (data in the database) still has results (entries in the database)
+            // move to the next result until a correct login comboiation is found
+            while(queryResultsFromDatabase.next())
+        {
+                if(queryResultsFromDatabase.getString(2).equals(txtBoxUsername.getText()) && queryResultsFromDatabase.getString(3).equals(txtBoxPassword.getText()))
+                {
+                    check = 0;
+                    break;
+                }
+            }
+            if(check == 0)
+            {
+
+                JOptionPane.showMessageDialog(null, "Login Successful");
+                new Home().setVisible(true);
+                
+            }
+            else
+            {
+                JOptionPane.showMessageDialog(null, "Invalid username or password");
+            }
 
         // Generic try/catch from the superclass Exception
         } catch (Exception e) {
