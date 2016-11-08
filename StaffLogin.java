@@ -43,7 +43,7 @@ public class StaffLogin extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel1.setText("jlabel");
+        jLabel1.setText("Username");
 
         txtBoxUsername.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -64,7 +64,7 @@ public class StaffLogin extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("jlabel");
+        jLabel2.setText("Password");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -154,7 +154,7 @@ public class StaffLogin extends javax.swing.JFrame {
             {
 
                 JOptionPane.showMessageDialog(null, "Login Successful");
-                new Home().setVisible(true);
+                new StaffHome().setVisible(true);
                 
             }
             else

@@ -5,18 +5,9 @@
  */
 package App;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.sql.*;
+import javax.swing.*;
 
-/**
- *
- * @author Alex
- */
 public class Home extends javax.swing.JFrame {
 
     /**
@@ -24,17 +15,6 @@ public class Home extends javax.swing.JFrame {
      */
     public Home() {
         initComponents();
-        
-            Connection connection;
-        try {
-            connection = DriverManager.getConnection("jdbc:derby://localhost:1527/Data","","");
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from STAFF_DETAILS");
-            labelGreetStaffMember.setText("Welcome " + rs.getString(2));
-    
-        } catch (SQLException ex) {
-            Logger.getLogger(Home.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     /**
@@ -46,30 +26,48 @@ public class Home extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        labelGreetStaffMember = new javax.swing.JLabel();
+        studentLoginBtn = new javax.swing.JButton();
+        staffLoginBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        labelGreetStaffMember.setText("Welcome, staff member");
+        studentLoginBtn.setText("Student Login");
+
+        staffLoginBtn.setText("Staff Login");
+        staffLoginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                staffLoginBtnActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelGreetStaffMember)
-                .addContainerGap(276, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(59, 59, 59)
+                .addComponent(staffLoginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(44, 44, 44)
+                .addComponent(studentLoginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(65, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(labelGreetStaffMember)
-                .addContainerGap(286, Short.MAX_VALUE))
+                .addGap(113, 113, 113)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(studentLoginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(staffLoginBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void staffLoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffLoginBtnActionPerformed
+        // Opens the staff login form when the staffLogin button is clicked
+        new StaffLogin().setVisible(true);
+    }//GEN-LAST:event_staffLoginBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -107,6 +105,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel labelGreetStaffMember;
+    private javax.swing.JButton staffLoginBtn;
+    private javax.swing.JButton studentLoginBtn;
     // End of variables declaration//GEN-END:variables
 }
