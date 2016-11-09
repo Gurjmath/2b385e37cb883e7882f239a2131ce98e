@@ -64,6 +64,9 @@ public class StatusCheck extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
+        EMC = new javax.swing.JTextField();
+        Search = new javax.swing.JButton();
+        jLabel7 = new javax.swing.JLabel();
 
         jTextField1.setText("jTextField1");
 
@@ -116,28 +119,30 @@ public class StatusCheck extends javax.swing.JFrame {
                 .addComponent(jLabel3)
                 .addGap(36, 36, 36)
                 .addComponent(Grade, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel12))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(SubID, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(Type)))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel10)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(grade, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel5)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(GradingStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel11)
+                                    .addComponent(jLabel12))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(SubID, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                                    .addComponent(Type)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel10)
+                                .addGap(46, 46, 46)
+                                .addComponent(grade, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel5)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(GradingStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -175,13 +180,35 @@ public class StatusCheck extends javax.swing.JFrame {
 
         jLabel6.setText("Due Date:");
 
+        EMC.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EMCActionPerformed(evt);
+            }
+        });
+
+        Search.setText("Search");
+
+        jLabel7.setText("Enter Module Code:");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(49, 49, 49)
+                                .addComponent(jLabel8))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(EMC, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(26, 26, 26)
@@ -206,21 +233,31 @@ public class StatusCheck extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(253, 253, 253))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                    .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(UpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(309, 309, 309))))
             .addGroup(layout.createSequentialGroup()
-                .addGap(45, 45, 45)
-                .addComponent(jLabel8)
-                .addGap(283, 941, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(Search, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(17, 17, 17)
+                        .addComponent(jLabel7)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addContainerGap(23, Short.MAX_VALUE)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(EMC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Search)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addContainerGap(110, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -244,13 +281,13 @@ public class StatusCheck extends javax.swing.JFrame {
                                     .addComponent(jLabel6)))
                             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(114, 114, 114)
-                        .addComponent(UpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(37, 37, 37)
+                        .addComponent(UpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(27, 27, 27))))
         );
 
         pack();
@@ -259,17 +296,20 @@ public class StatusCheck extends javax.swing.JFrame {
     private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
         try{
+            //Create variables for the location ooof the database, username and password
             String db = "jdbc:derby://localhost:1527/Student";
-            String Admin1 = null; //admin1
+            String Admin1 = null; //Admin1
             String password = null; //password
-            
+            //connect to the database
             Connection conn = DriverManager.getConnection(db, "Admin1", "password");
             Statement ste = conn.createStatement();
+            //SQL statement to allow the staff to update the grade and status to corresponding ID
             String update = "UPDATE SUBMISSION SET GRADE= '"+grade.getText()+"',STATUS = '"+GradingStatus.getSelectedItem()+""
                     + "'WHERE SUBMISSION_ID = '"+SubID.getText()+"'";
+            //execute the SQL statement
             ste.execute(update);
             List();
-            //pop up saying the booking has been updated
+            //pop up saying the grade   and the status has been updated.
             JOptionPane.showMessageDialog(null,"The Grade and Status has been successfully updated");
             
         }
@@ -291,30 +331,31 @@ public class StatusCheck extends javax.swing.JFrame {
             
             Connection conn = DriverManager.getConnection(db, "Admin1", "password");
             Statement ste = conn.createStatement();
-            //SQL statement so select all records from the db
+            //SQL statement to show all the course ID in the list
             String sid = "SELECT * FROM SUBMISSION WHERE COURSEWORK_ID = '"+courseID.getSelectedValue()+"'";
             ResultSet rs = ste.executeQuery(sid);
             
             DefaultListModel List = new DefaultListModel();
             while(rs.next()){
-                //only shows the booking id
+                //finds the correct data from the submission table.
+                //the number is the number of column in that table
                 SID.setText(rs.getString(2));
                 CID.setText(rs.getString(3));
-                grade.setText(rs.getString(4));
-                GradingStatus.setSelectedItem(rs.getString(5));
+                grade.setText(rs.getString(5));
+                GradingStatus.setSelectedItem(rs.getString(4));
                 SubID.setText(rs.getString(1));
             }
             String nm = "SELECT * FROM STUDENT WHERE STUDENT_ID = '"+SID.getText()+"'";
             ResultSet R = ste.executeQuery(nm);
             while(R.next()){
-                //only shows the booking id
+                //gets first name and surname from the student table
                 First.setText(R.getString(2));
                 Surname.setText(R.getString(3));
             }
             String ty = "SELECT * FROM COURSEWORK1 WHERE COURSEWORK_ID = '"+courseID.getSelectedValue()+"'";
             ResultSet T = ste.executeQuery(ty);
             while(T.next()){
-                //only shows the booking id
+                //gets the type and due date from the coursework table
                 Type.setText(T.getString(3));
                 DueDate.setText(T.getString(5));
             }
@@ -323,6 +364,10 @@ public class StatusCheck extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,ex.toString());
         }        
     }                                     
+
+    private void EMCActionPerformed(java.awt.event.ActionEvent evt) {                                    
+        // TODO add your handling code here:
+    }                                   
 
     /**
      * @param args the command line arguments
@@ -368,13 +413,15 @@ public class StatusCheck extends javax.swing.JFrame {
             
             Connection conn = DriverManager.getConnection(db, "Admin1", "password");
             Statement ste = conn.createStatement();
-            //SQL statement so select all records from the db
+            //SQL statement to show all the submissions within the table
             String sid = "SELECT * FROM SUBMISSION";
+            //execute the SQL statement
             ResultSet rs = ste.executeQuery(sid);
             
             DefaultListModel List = new DefaultListModel();
             while(rs.next()){
-                //only shows the booking id
+                //the list shows the 3rd column in the submission table
+                //which is the the coursework ID
                 List.addElement(rs.getString(3));
             }
             //refreshes the list
@@ -390,10 +437,12 @@ public class StatusCheck extends javax.swing.JFrame {
     // Variables declaration - do not modify                     
     private javax.swing.JTextField CID;
     private javax.swing.JTextField DueDate;
+    private javax.swing.JTextField EMC;
     private javax.swing.JTextField First;
     private javax.swing.JTextField Grade;
     private javax.swing.JComboBox<String> GradingStatus;
     private javax.swing.JTextField SID;
+    private javax.swing.JButton Search;
     private javax.swing.JTextField SubID;
     private javax.swing.JTextField Surname;
     private javax.swing.JTextField Type;
@@ -409,6 +458,7 @@ public class StatusCheck extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
