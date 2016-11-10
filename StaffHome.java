@@ -24,16 +24,19 @@ public class StaffHome extends javax.swing.JFrame {
      */
     public StaffHome() {
         initComponents();
-        
-            Connection connection;
+
         try {
-            connection = DriverManager.getConnection("jdbc:derby://localhost:1527/Data","","");
+            Connection connection = DriverManager.getConnection("jdbc:derby://localhost:1527/Data","admin2","password");
             Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * from STAFF_DETAILS");
-            labelGreetStaffMember.setText("Welcome " + rs.getString(2));
+            ResultSet rs = statement.executeQuery("select * STAFF_DETAILS");
+            
+           // labelGreetStaffMember.setText("Welcome ");
+           //rs.next();
+           //String hello = rs.getString(2);
+            //labelGreetStaffMember.setText(hello);
     
         } catch (SQLException ex) {
-            Logger.getLogger(StaffHome.class.getName()).log(Level.SEVERE, null, ex);
+            
         }
     }
 
@@ -52,8 +55,6 @@ public class StaffHome extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        labelGreetStaffMember.setText("Welcome, staff member");
 
         jButton1.setText("Functionaliy 2");
 
@@ -75,8 +76,8 @@ public class StaffHome extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(labelGreetStaffMember)
-                            .addComponent(jLabel1)))
+                            .addComponent(jLabel1)
+                            .addComponent(labelGreetStaffMember, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -87,15 +88,14 @@ public class StaffHome extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(labelGreetStaffMember)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(labelGreetStaffMember, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(15, 15, 15)
                 .addComponent(jButton2)
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
-                .addContainerGap(104, Short.MAX_VALUE))
+                .addContainerGap(197, Short.MAX_VALUE))
         );
 
         pack();
