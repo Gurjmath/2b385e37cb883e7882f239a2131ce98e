@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
  */
 import java.sql.*;
 import javax.swing.*;
+import javax.swing.text.Position;
 public class StatusCheck extends javax.swing.JFrame {
 
     /**
@@ -84,7 +85,7 @@ public class StatusCheck extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(courseID);
 
-        jLabel8.setText("Course ID");
+        jLabel8.setText("SubmissionID");
 
         UpdateBtn.setText("Update");
         UpdateBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -187,43 +188,47 @@ public class StatusCheck extends javax.swing.JFrame {
         });
 
         Search.setText("Search");
+        Search.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SearchActionPerformed(evt);
+            }
+        });
 
-        jLabel7.setText("Enter Module Code:");
+        jLabel7.setText("Enter Course ID:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 11, Short.MAX_VALUE)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(26, 26, 26))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addContainerGap()
+                                .addComponent(EMC, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(49, 49, 49)
-                                .addComponent(jLabel8))))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(EMC, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 6, Short.MAX_VALUE)))
+                                .addGap(41, 41, 41)
+                                .addComponent(jLabel8)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(16, 16, 16)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel9)
+                                .addComponent(jLabel1)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel4)
+                            .addComponent(jLabel2)))
+                    .addComponent(jLabel6))
+                .addGap(36, 36, 36)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(26, 26, 26)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGap(16, 16, 16)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel9)
-                                        .addComponent(jLabel1)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLabel4)
-                                    .addComponent(jLabel2)))
-                            .addComponent(jLabel6))
-                        .addGap(36, 36, 36)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(Surname, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
                             .addComponent(First)
@@ -234,9 +239,8 @@ public class StatusCheck extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(253, 253, 253))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(UpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(309, 309, 309))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -280,9 +284,9 @@ public class StatusCheck extends javax.swing.JFrame {
                                     .addComponent(DueDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel6)))
                             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(114, 114, 114)
+                        .addGap(88, 88, 88)
                         .addComponent(UpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
+                        .addGap(37, 37, 37))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel8)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -304,7 +308,7 @@ public class StatusCheck extends javax.swing.JFrame {
             Connection conn = DriverManager.getConnection(db, "Admin1", "password");
             Statement ste = conn.createStatement();
             //SQL statement to allow the staff to update the grade and status to corresponding ID
-            String update = "UPDATE SUBMISSION SET GRADE= '"+grade.getText()+"',STATUS = '"+GradingStatus.getSelectedItem()+""
+            String update = "UPDATE SUNMISSION1 SET GRADE= '"+grade.getText()+"',STATUS = '"+GradingStatus.getSelectedItem()+""
                     + "'WHERE SUBMISSION_ID = '"+SubID.getText()+"'";
             //execute the SQL statement
             ste.execute(update);
@@ -332,18 +336,19 @@ public class StatusCheck extends javax.swing.JFrame {
             Connection conn = DriverManager.getConnection(db, "Admin1", "password");
             Statement ste = conn.createStatement();
             //SQL statement to show all the course ID in the list
-            String sid = "SELECT * FROM SUBMISSION WHERE COURSEWORK_ID = '"+courseID.getSelectedValue()+"'";
+            String sid = "SELECT * FROM SUNMISSION1 WHERE SUBMISSION_ID = '"+courseID.getSelectedValue()+"'";
             ResultSet rs = ste.executeQuery(sid);
             
             DefaultListModel List = new DefaultListModel();
             while(rs.next()){
                 //finds the correct data from the submission table.
                 //the number is the number of column in that table
+                SubID.setText(rs.getString(1));
                 SID.setText(rs.getString(2));
                 CID.setText(rs.getString(3));
                 grade.setText(rs.getString(5));
                 GradingStatus.setSelectedItem(rs.getString(4));
-                SubID.setText(rs.getString(1));
+                
             }
             String nm = "SELECT * FROM STUDENT WHERE STUDENT_ID = '"+SID.getText()+"'";
             ResultSet R = ste.executeQuery(nm);
@@ -368,6 +373,28 @@ public class StatusCheck extends javax.swing.JFrame {
     private void EMCActionPerformed(java.awt.event.ActionEvent evt) {                                    
         // TODO add your handling code here:
     }                                   
+
+    private void SearchActionPerformed(java.awt.event.ActionEvent evt) {                                       
+        // TODO add your handling code here:
+        /*try{
+            String db = "jdbc:derby://localhost:1527/Student";
+            String Admin1 = null;
+            String password = null;
+            
+            Connection conn = DriverManager.getConnection(db, "Admin1", "password");
+            Statement ste = conn.createStatement();
+            
+            String search = "SELECT COURSEWORK_ID FROM SUBMISSION WHERE COURSEWORK_ID = '"+EMC.getText()+"'";
+            ste.executeQuery(search);
+            //pop up saying the booking has been updated
+            List();
+        }
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,ex.toString());
+        }*/
+        int searchDB = courseID.getNextMatch(EMC.getText(), 0, Position.Bias.Forward);
+        courseID.setSelectedIndex(searchDB);
+    }                                      
 
     /**
      * @param args the command line arguments
@@ -414,7 +441,7 @@ public class StatusCheck extends javax.swing.JFrame {
             Connection conn = DriverManager.getConnection(db, "Admin1", "password");
             Statement ste = conn.createStatement();
             //SQL statement to show all the submissions within the table
-            String sid = "SELECT * FROM SUBMISSION";
+            String sid = "SELECT * FROM SUNMISSION1";
             //execute the SQL statement
             ResultSet rs = ste.executeQuery(sid);
             
@@ -422,7 +449,7 @@ public class StatusCheck extends javax.swing.JFrame {
             while(rs.next()){
                 //the list shows the 3rd column in the submission table
                 //which is the the coursework ID
-                List.addElement(rs.getString(3));
+                List.addElement(rs.getString(1));
             }
             //refreshes the list
             courseID.setModel(List);
