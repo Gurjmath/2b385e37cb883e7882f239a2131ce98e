@@ -12,14 +12,20 @@ import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileFilter;
 import javax.swing.filechooser.FileNameExtensionFilter;
-//import java.sql.Statement; 
-
+import javax.swing.JTextField;
+import javax.swing.JComboBox;
+import java.sql.Statement; 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 /**
  *
  * @author Gurjeet
  */
 public class GenerateNumbers extends javax.swing.JFrame {
-
+    
+        
+  
     /**
      * Creates new form GenerateNumbers
      */
@@ -46,6 +52,7 @@ public class GenerateNumbers extends javax.swing.JFrame {
         cwkStatus = new javax.swing.JLabel();
         addSubmission = new javax.swing.JButton();
         cwkSelected = new javax.swing.JLabel();
+        modules = new javax.swing.JComboBox<>();
 
         addCoursework.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,6 +122,13 @@ public class GenerateNumbers extends javax.swing.JFrame {
 
         cwkSelected.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
 
+        modules.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "310CT", "340CT", "380CT" }));
+        modules.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                modulesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -130,7 +144,10 @@ public class GenerateNumbers extends javax.swing.JFrame {
                         .addGap(244, 244, 244)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(Confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(addSubmission)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(addSubmission)
+                                .addGap(46, 46, 46)
+                                .addComponent(modules, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(referenceCode, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(result, javax.swing.GroupLayout.PREFERRED_SIZE, 105, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(101, Short.MAX_VALUE))
@@ -143,7 +160,9 @@ public class GenerateNumbers extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(cwkSelected, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(25, 25, 25)
-                .addComponent(addSubmission)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(addSubmission)
+                    .addComponent(modules, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(Confirm, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -180,6 +199,33 @@ public class GenerateNumbers extends javax.swing.JFrame {
         cwkStatus.setHorizontalAlignment(cwkStatus.CENTER);
         Confirm.setEnabled(false);
         addSubmission.setEnabled(false); 
+        modules.setEnabled(false); 
+        //UPDATE submissions
+        //SET status = 'Submitted', modules='selected string'
+        //WHERE StudentID = '1'
+        try{
+            String db = "jdbc:derby://localhost:1527/Student";
+            String Admin1 = null; //admin1
+            String password = null; //password
+            
+            Connection con = DriverManager.getConnection(db, "Admin1", "password");
+            Statement ste = con.createStatement();
+            String query = "INSERT INTO SUNMISSION1"
+                    + "(SUBMISSION_ID,STUDENT_ID,COURSEWORK_ID,STATUS)"
+                    + "VALUES('"+result.getText()+"','4','1', '"+cwkStatus.getText()+"')"; 
+                    
+                    
+                    //+ "'" + cwkStatus.getText()+"'"; 
+                    //"INSERT INTO SUNMISSION1 STATUS SET STATUS = '"+cwkStatus.getText();//+""
+                    //+ "'WHERE SUBMISSION_ID = '" +result.getText()+ "'";
+            //SQL statement to show all the submissions within the table
+            //execute the SQL statement
+            ste.execute(query); 
+    }
+        catch(SQLException ex){
+            JOptionPane.showMessageDialog(null,ex.toString());
+        }
+        
    }  
     }//GEN-LAST:event_ConfirmActionPerformed
 
@@ -208,6 +254,10 @@ public class GenerateNumbers extends javax.swing.JFrame {
     private void addCourseworkActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addCourseworkActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_addCourseworkActionPerformed
+
+    private void modulesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modulesActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_modulesActionPerformed
 
     /**
      * @param args the command line arguments
@@ -251,6 +301,7 @@ public class GenerateNumbers extends javax.swing.JFrame {
     private javax.swing.JButton addSubmission;
     private javax.swing.JLabel cwkSelected;
     private javax.swing.JLabel cwkStatus;
+    private javax.swing.JComboBox<String> modules;
     private javax.swing.JDialog noCwk;
     private javax.swing.JLabel notification;
     private javax.swing.JButton okay;
