@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package studentSubmit;
 import java.util.Random;
 import java.sql.DriverManager;
@@ -19,20 +13,16 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 /**
- *
  * @author Gurjeet
  */
 public class GenerateNumbers extends javax.swing.JFrame {
-    
-        
-  
+ 
     /**
      * Creates new form GenerateNumbers
      */
     public GenerateNumbers() {
         initComponents();
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -180,9 +170,6 @@ public class GenerateNumbers extends javax.swing.JFrame {
    if(cwkSelected.getText().isEmpty())
     {
         noCwk.setVisible(true); 
-        //Confirm.setVisible(false);
-        //Confirm.setEnabled(false);
-         
     }
    else
    {
@@ -212,20 +199,12 @@ public class GenerateNumbers extends javax.swing.JFrame {
             Statement ste = con.createStatement();
             String query = "INSERT INTO SUNMISSION1"
                     + "(SUBMISSION_ID,STUDENT_ID,COURSEWORK_ID,STATUS)"
-                    + "VALUES('"+result.getText()+"','4','1', '"+cwkStatus.getText()+"')"; 
-                    
-                    
-                    //+ "'" + cwkStatus.getText()+"'"; 
-                    //"INSERT INTO SUNMISSION1 STATUS SET STATUS = '"+cwkStatus.getText();//+""
-                    //+ "'WHERE SUBMISSION_ID = '" +result.getText()+ "'";
-            //SQL statement to show all the submissions within the table
-            //execute the SQL statement
+                    + "VALUES('"+result.getText()+"','5','1', '"+cwkStatus.getText()+"')"; 
             ste.execute(query); 
     }
         catch(SQLException ex){
             JOptionPane.showMessageDialog(null,ex.toString());
         }
-        
    }  
     }//GEN-LAST:event_ConfirmActionPerformed
 
@@ -240,8 +219,6 @@ public class GenerateNumbers extends javax.swing.JFrame {
             java.io.File file = addCoursework.getSelectedFile();
             String file_name = file.getName(); 
             cwkSelected.setHorizontalAlignment(cwkSelected.CENTER); 
-            //String file_name =  file.toString();
-            //JOptionPane.showMessageDialog(this,file_name);
             cwkSelected.setText(file_name);
         }   
     }//GEN-LAST:event_addSubmissionActionPerformed
@@ -287,7 +264,6 @@ public class GenerateNumbers extends javax.swing.JFrame {
         //</editor-fold>
         SDBconnect connect = new SDBconnect();
         connect.connect("Admin1","password");
-
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
