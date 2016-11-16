@@ -12,8 +12,8 @@ package Disputes;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 public class DisputeMain extends javax.swing.JFrame {
     
@@ -37,8 +37,6 @@ public class DisputeMain extends javax.swing.JFrame {
         jConfirmButton = new javax.swing.JButton();
         jCancelButton = new javax.swing.JButton();
         jLabelConfirm = new javax.swing.JLabel();
-        jFrame1 = new javax.swing.JFrame();
-        cwkLabel = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jButtonDispute = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -85,32 +83,13 @@ public class DisputeMain extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabelConfirm)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(confirmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jConfirmButton)
-                    .addComponent(jCancelButton))
+                .addGroup(confirmDialogLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jCancelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jConfirmButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        cwkLabel.setText("Coursework ID:");
-
-        javax.swing.GroupLayout jFrame1Layout = new javax.swing.GroupLayout(jFrame1.getContentPane());
-        jFrame1.getContentPane().setLayout(jFrame1Layout);
-        jFrame1Layout.setHorizontalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jFrame1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cwkLabel)
-                .addContainerGap(446, Short.MAX_VALUE))
-        );
-        jFrame1Layout.setVerticalGroup(
-            jFrame1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jFrame1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(cwkLabel)
-                .addContainerGap(396, Short.MAX_VALUE))
-        );
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Enter comment: (max. 250 characters, including spaces)");
 
@@ -164,7 +143,8 @@ public class DisputeMain extends javax.swing.JFrame {
 
     private void jButtonDisputeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDisputeActionPerformed
         // TODO add your handling code here:
-        String comment = jButtonDispute.getText();
+        //when button pressed, assign the text to variable comment
+        String comment = jCommentArea.getText();
         confirmDialog.setVisible(true);
     }//GEN-LAST:event_jButtonDisputeActionPerformed
 
@@ -191,6 +171,31 @@ public class DisputeMain extends javax.swing.JFrame {
 
     private void jConfirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jConfirmButtonActionPerformed
         // TODO add your handling code here:
+        //database credentials
+        String host = "jdbc:derby://localhost:1527/ECS2";
+        String username = "admin1";
+        String password = "admin1";
+        
+        try {
+            //try to connect to databse with database credentials
+            Connection con = DriverManager.getConnection(host, username, password);
+            
+            //using dummy data for a piece of coursework to update dispute fields
+            PreparedStatement statement = con.prepareStatement("UPDATE SUBMISSION SET despute = ?, Comment = ? WHERE Student_ID = ?");
+            statement.setString(1, "True");
+            statement.setString(2, jCommentArea.getText());
+            statement.setString(3, "1"); 
+            statement.executeUpdate();
+            System.out.println("Database has been updated!");
+            confirmDialog.dispose();
+            jCommentArea.setEnabled(false);
+            jButtonDispute.setEnabled(false);
+        }
+        catch(SQLException err) {
+            //if it fails, throw an error message
+            System.out.println(err.getMessage());
+        }
+        
         
     }//GEN-LAST:event_jConfirmButtonActionPerformed
 
@@ -222,20 +227,7 @@ public class DisputeMain extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
         
-        //database credentials
-        String host = "jdbc:derby://localhost:1527/ECS";
-        String username = "admin1";
-        String password = "admin1";
-        
-        try {
-            //try to connect to databse with database credentials
-            Connection con = DriverManager.getConnection(host, username, password);
-        }
-        catch(SQLException err) {
-            //if it fails, throw an error message
-            System.out.println(err.getMessage());
-        }
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
@@ -249,12 +241,10 @@ public class DisputeMain extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDialog confirmDialog;
-    private javax.swing.JLabel cwkLabel;
     private javax.swing.JButton jButtonDispute;
     private javax.swing.JButton jCancelButton;
     private javax.swing.JTextArea jCommentArea;
     private javax.swing.JButton jConfirmButton;
-    private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabelConfirm;
     private javax.swing.JScrollPane jScrollPane2;
