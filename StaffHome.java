@@ -18,25 +18,22 @@ import java.util.logging.Logger;
  * @author Alex
  */
 public class StaffHome extends javax.swing.JFrame {
-
-    /**
-     * Creates new form Home
-     */
-    public StaffHome() {
+    
+    
+    public StaffHome()  {
         initComponents();
 
         try {
-            Connection connection = DriverManager.getConnection("jdbc:derby://localhost:1527/Data","admin2","password");
-            Statement statement = connection.createStatement();
-            ResultSet rs = statement.executeQuery("select * STAFF_DETAILS");
-            
-           // labelGreetStaffMember.setText("Welcome ");
-           //rs.next();
-           //String hello = rs.getString(2);
-            //labelGreetStaffMember.setText(hello);
+            Connection connectionToDB = DriverManager.getConnection("jdbc:derby://localhost:1527/Data","admin2","password");
+            Statement statement = connectionToDB.createStatement();
+            ResultSet queryResultsFromDatabase = statement.executeQuery("select * from STAFF_DETAILS");
+
+           queryResultsFromDatabase.next();
+           String staffName = StaffLogin.getStaffName;
+           labelGreetStaffMember.setText("Welcome, " + staffName);
     
         } catch (SQLException ex) {
-            
+            System.out.println("Unable to access data from the database");
         }
     }
 
@@ -77,7 +74,7 @@ public class StaffHome extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
-                            .addComponent(labelGreetStaffMember, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(labelGreetStaffMember, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(50, 50, 50)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

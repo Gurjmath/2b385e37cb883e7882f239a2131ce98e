@@ -32,6 +32,11 @@ public class Home extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         studentLoginBtn.setText("Student Login");
+        studentLoginBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                studentLoginBtnActionPerformed(evt);
+            }
+        });
 
         staffLoginBtn.setText("Staff Login");
         staffLoginBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -67,7 +72,19 @@ public class Home extends javax.swing.JFrame {
     private void staffLoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_staffLoginBtnActionPerformed
         // Opens the staff login form when the staffLogin button is clicked
         new StaffLogin().setVisible(true);
+        // Closes the  Home form when the StaffLogin button is pressed
+        Home.this.setVisible(false);
+
     }//GEN-LAST:event_staffLoginBtnActionPerformed
+
+    private void studentLoginBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_studentLoginBtnActionPerformed
+        // Opens the student login form when the studentLogin button is clicked
+        new StudentLogin().setVisible(true);
+        // Closes the  Home form when the StudentLogin button is pressed
+        Home.this.setVisible(false);
+
+
+    }//GEN-LAST:event_studentLoginBtnActionPerformed
 
     /**
      * @param args the command line arguments

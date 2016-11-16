@@ -12,7 +12,7 @@ import java.sql.ResultSet;
 import javax.swing.JOptionPane;
 public class StudentLogin extends javax.swing.JFrame {
     
-    public Integer test = 0;
+    public static String getStudentName;
     /**
      * Creates new form StudentLogin
      */
@@ -142,7 +142,7 @@ public class StudentLogin extends javax.swing.JFrame {
             {
                 if(queryResultsFromDatabase.getString(2).equals(txtBoxUsername.getText()) && queryResultsFromDatabase.getString(3).equals(txtBoxPassword.getText()))
                 {
-                    //test = queryResultsFromDatabase.getInt(1);
+                    getStudentName = queryResultsFromDatabase.getString(2);
                     check = 0;
                     break;
                 }

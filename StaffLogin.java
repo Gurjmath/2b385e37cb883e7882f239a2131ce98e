@@ -17,13 +17,13 @@ import javax.swing.JOptionPane;
  */
 public class StaffLogin extends javax.swing.JFrame {
 
-    public int test = 0;
-    public String test5 = "Hello";
+    public static String getStaffName;
     /**
      * Creates new form StaffLogin
      */
     public StaffLogin() {
         initComponents();
+        
 
     }
 
@@ -138,15 +138,14 @@ public class StaffLogin extends javax.swing.JFrame {
             Connection connectionToDB = DriverManager.getConnection("jdbc:derby://localhost:1527/Data","admin2","password");
             Statement statement = connectionToDB.createStatement();
             ResultSet queryResultsFromDatabase = statement.executeQuery("select * from STAFF_DETAILS");
-
-
+            
                
+            
             while(queryResultsFromDatabase.next())
         {
                 if(queryResultsFromDatabase.getString(2).equals(txtBoxUsername.getText()) && queryResultsFromDatabase.getString(3).equals(txtBoxPassword.getText()))
                 {
-                    //test = queryResultsFromDatabase.getInt(1);
-               
+                    getStaffName = queryResultsFromDatabase.getString(2);
                     check = 0;
                     break;
                 }
