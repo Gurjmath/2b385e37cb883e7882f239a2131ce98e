@@ -195,7 +195,7 @@ public class DisputeMain extends javax.swing.JFrame {
             //if it fails, throw an error message
             System.out.println(err.getMessage());
         }
-        
+        //code needed to notify staff about dispute
         
     }//GEN-LAST:event_jConfirmButtonActionPerformed
 
