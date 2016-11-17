@@ -4,15 +4,6 @@
  * and open the template in the editor.
  */
 package App;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 /**
  *
  * @author Alex
@@ -22,18 +13,15 @@ public class StaffHome extends javax.swing.JFrame {
     
     public StaffHome()  {
         initComponents();
-
+        
+        // Functionality surrounded wit try-catch to catch any errors
         try {
-            Connection connectionToDB = DriverManager.getConnection("jdbc:derby://localhost:1527/Data","admin2","password");
-            Statement statement = connectionToDB.createStatement();
-            ResultSet queryResultsFromDatabase = statement.executeQuery("select * from STAFF_DETAILS");
-
-           queryResultsFromDatabase.next();
-           String staffName = StaffLogin.getStaffName;
-           labelGreetStaffMember.setText("Welcome, " + staffName);
-    
-        } catch (SQLException ex) {
-            System.out.println("Unable to access data from the database");
+           // Displays the users username on the staff form after they have logged in.
+           labelGreetStaffMember.setText("Welcome, " + StaffLogin.getStaffName);
+           
+        // Catces any errors and displays the error message if the execution of the code was unsuccessful
+        } catch (Exception e) {
+            System.out.println("An error has occured, check if the database contains the correct entities and that getStaffName is accessible");
         }
     }
 

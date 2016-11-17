@@ -4,14 +4,6 @@
  * and open the template in the editor.
  */
 package App;
-
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import static jdk.nashorn.internal.objects.NativeRegExp.test;
-
 /**
  *
  * @author Alex
@@ -22,18 +14,16 @@ public class StudentHome extends javax.swing.JFrame {
      * Creates new form StudentHome
      */
     public StudentHome() {
-        initComponents();
-        try {
-            Connection connectionToDB = DriverManager.getConnection("jdbc:derby://localhost:1527/Data","admin2","password");
-            Statement statement = connectionToDB.createStatement();
-            ResultSet queryResultsFromDatabase = statement.executeQuery("select * from STUDENT_DETAILS");
 
-           queryResultsFromDatabase.next();
-           String studentName = StudentLogin.getStudentName;
-           labelGreetStudent.setText("Welcome, " + studentName);
-    
-        } catch (SQLException ex) {
-            System.out.println("Unable to access data from the database");
+        initComponents();
+        // Functionality surrounded wit try-catch to catch any errors
+        try {
+           // Displays the users username on the student form after they have logged in.
+           labelGreetStudent.setText("Welcome, " + StudentLogin.getStudentName);
+           
+        // Catces any errors and displays the error message if the execution of the code was unsuccessful
+        } catch (Exception e) {
+            System.out.println("An error has occured, check if the database contains the correct entities and that getStudentName is accessible");
         }
     }
 
@@ -42,45 +32,62 @@ public class StudentHome extends javax.swing.JFrame {
     private void initComponents() {
 
         labelGreetStudent = new javax.swing.JLabel();
-        test1 = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         labelGreetStudent.setText("Welcome, Student");
 
-        test1.addActionListener(new java.awt.event.ActionListener() {
+        jButton1.setText("Functionaliy 2");
+
+        jButton2.setText("Functionality 1");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                test1ActionPerformed(evt);
+                jButton2ActionPerformed(evt);
             }
         });
+
+        jLabel1.setText("Add the student functionality in this form, e.g. submitting coursework");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(147, 147, 147)
-                .addComponent(test1, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(227, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
                 .addComponent(labelGreetStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 400, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(40, 40, 40)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton1)
+                            .addComponent(jButton2))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(labelGreetStudent, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 188, Short.MAX_VALUE)
-                .addComponent(test1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(110, 110, 110))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(15, 15, 15)
+                .addComponent(jButton2)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addContainerGap(209, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void test1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_test1ActionPerformed
-
-    }//GEN-LAST:event_test1ActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -118,7 +125,9 @@ public class StudentHome extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel labelGreetStudent;
-    private javax.swing.JTextField test1;
     // End of variables declaration//GEN-END:variables
 }
