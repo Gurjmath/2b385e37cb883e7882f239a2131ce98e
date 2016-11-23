@@ -7,13 +7,15 @@ package Disputes;
 
 /**
  *
- * @author Wise
+ * @author Wise Edwards
  */
 
+//import libraries
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
+
 
 public class DisputeMain extends javax.swing.JFrame {
     
@@ -23,7 +25,8 @@ public class DisputeMain extends javax.swing.JFrame {
     public DisputeMain() {
         initComponents();
     }
-
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -143,8 +146,7 @@ public class DisputeMain extends javax.swing.JFrame {
 
     private void jButtonDisputeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonDisputeActionPerformed
         // TODO add your handling code here:
-        //when button pressed, assign the text to variable comment
-        String comment = jCommentArea.getText();
+        //when button pressed, show the confirm dialog
         confirmDialog.setVisible(true);
     }//GEN-LAST:event_jButtonDisputeActionPerformed
 
@@ -159,6 +161,8 @@ public class DisputeMain extends javax.swing.JFrame {
             jButtonDispute.setEnabled(false);
         }
         if (jCommentArea.getText().length() >= 250){
+            //if text in comment area is larger than 250, consume any extra characters
+            //this makes it not possible to type more than 250 characters in the field
             evt.consume();
         }
     }//GEN-LAST:event_jCommentAreaKeyTyped
@@ -180,13 +184,17 @@ public class DisputeMain extends javax.swing.JFrame {
             //try to connect to databse with database credentials
             Connection con = DriverManager.getConnection(host, username, password);
             
-            //using dummy data for a piece of coursework to update dispute fields
+            //using data for a piece of coursework to update dispute fields
             PreparedStatement statement = con.prepareStatement("UPDATE SUBMISSION SET despute = ?, Comment = ? WHERE Student_ID = ?");
             statement.setString(1, "True");
+            //get the text from the comment area and put it into the database
             statement.setString(2, jCommentArea.getText());
             statement.setString(3, "1"); 
+            //execute the update statement shown above
             statement.executeUpdate();
+            
             System.out.println("Database has been updated!");
+            //dispose of the confirm dialog and grey out dispute button and comment 
             confirmDialog.dispose();
             jCommentArea.setEnabled(false);
             jButtonDispute.setEnabled(false);
@@ -232,6 +240,7 @@ public class DisputeMain extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
+                //main of code
                 new DisputeMain().setVisible(true);
                 
                 
