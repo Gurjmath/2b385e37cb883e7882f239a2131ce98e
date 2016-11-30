@@ -1,14 +1,4 @@
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
-
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templatespackage ECS;
+package ECS;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -79,6 +69,7 @@ public class StatusCheck extends javax.swing.JFrame {
         EMC = new javax.swing.JTextField();
         Search = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
+        back = new javax.swing.JButton();
 
         jTextField1.setText("jTextField1");
 
@@ -205,7 +196,14 @@ public class StatusCheck extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("Enter Course ID:");
+        jLabel7.setText("Enter Submission ID:");
+
+        back.setText("Back to menu");
+        back.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -251,6 +249,8 @@ public class StatusCheck extends javax.swing.JFrame {
                         .addGap(253, 253, 253))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(UpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(back)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
@@ -296,7 +296,9 @@ public class StatusCheck extends javax.swing.JFrame {
                                     .addComponent(jLabel6)))
                             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(88, 88, 88)
-                        .addComponent(UpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(UpdateBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 34, Short.MAX_VALUE)
+                            .addComponent(back, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(37, 37, 37))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jLabel8)
@@ -324,7 +326,7 @@ public class StatusCheck extends javax.swing.JFrame {
             //execute the SQL statement
             ste.execute(update);
             List();
-            //pop up saying the grade   and the status has been updated.
+            //pop up saying the grade and the status has been updated.
             JOptionPane.showMessageDialog(null,"The Grade and Status has been successfully updated");
             
         }
@@ -386,9 +388,20 @@ public class StatusCheck extends javax.swing.JFrame {
     }                                   
 
     private void SearchActionPerformed(java.awt.event.ActionEvent evt) {                                       
+        //when the EMC textbox is filled the search button then looks for the
+        //corresponding field
         int searchDB = courseID.getNextMatch(EMC.getText(), 0, Position.Bias.Forward);
+        //gets the submissionID searched for in the list 
         courseID.setSelectedIndex(searchDB);
     }                                      
+
+    private void backActionPerformed(java.awt.event.ActionEvent evt) {                                     
+        // TODO add your handling code here:
+        //allow the staff to go back to the staf menu
+        new StaffHome().setVisible(true);
+        //closes this window
+        StatusCheck.this.setVisible(false);
+    }                                    
 
     /**
      * @param args the command line arguments
@@ -442,7 +455,7 @@ public class StatusCheck extends javax.swing.JFrame {
             DefaultListModel List = new DefaultListModel();
             while(rs.next()){
                 //the list shows the 3rd column in the submission table
-                //which is the the coursework ID
+                //which is the the submission ID
                 List.addElement(rs.getString(1));
             }
             //refreshes the list
@@ -468,491 +481,7 @@ public class StatusCheck extends javax.swing.JFrame {
     private javax.swing.JTextField Surname;
     private javax.swing.JTextField Type;
     private javax.swing.JButton UpdateBtn;
-    private javax.swing.JList<String> courseID;
-    private javax.swing.JTextField grade;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextField jTextField1;
-    // End of variables declaration                   
-}
-
- * and open the template in the editor.
- */
-
-/**
- *
- * @author Rahul Dadhania
- */
-import java.sql.*;
-import javax.swing.*;
-import javax.swing.text.Position;
-public class StatusCheck extends javax.swing.JFrame {
-
-    /**
-     * Creates new form NewJFrame
-     */
-    
-    public StatusCheck() {
-        initComponents();
-        List();
-    }
-
-    /**
-     * This method is called from within the constructor to initialize the form.
-     * WARNING: Do NOT modify this code. The content of this method is always
-     * regenerated by the Form Editor.
-     */
-    @SuppressWarnings("unchecked")
-    // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
-    private void initComponents() {
-
-        jTextField1 = new javax.swing.JTextField();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        courseID = new javax.swing.JList<>();
-        jLabel8 = new javax.swing.JLabel();
-        UpdateBtn = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        Grade = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
-        SubID = new javax.swing.JTextField();
-        jLabel12 = new javax.swing.JLabel();
-        Type = new javax.swing.JTextField();
-        GradingStatus = new javax.swing.JComboBox<>();
-        grade = new javax.swing.JTextField();
-        DueDate = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        First = new javax.swing.JTextField();
-        SID = new javax.swing.JTextField();
-        Surname = new javax.swing.JTextField();
-        CID = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        EMC = new javax.swing.JTextField();
-        Search = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-
-        jTextField1.setText("jTextField1");
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
-        courseID.setModel(new javax.swing.AbstractListModel<String>() {
-            String[] strings = { "Item 1", "Item 2", "Item 3", "Item 4", "Item 5" };
-            public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
-        });
-        courseID.addListSelectionListener(new javax.swing.event.ListSelectionListener() {
-            public void valueChanged(javax.swing.event.ListSelectionEvent evt) {
-                courseIDValueChanged(evt);
-            }
-        });
-        jScrollPane1.setViewportView(courseID);
-
-        jLabel8.setText("SubmissionID");
-
-        UpdateBtn.setText("Update");
-        UpdateBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                UpdateBtnActionPerformed(evt);
-            }
-        });
-
-        jLabel3.setText("Grade:");
-
-        jLabel5.setText("Grading Status:");
-
-        jLabel10.setText("Grade:");
-
-        jLabel11.setText("Submission ID:");
-
-        jLabel12.setText("Type:");
-
-        GradingStatus.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Submitted For Grading", "Graded" }));
-        GradingStatus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                GradingStatusActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(52, 52, 52)
-                .addComponent(jLabel3)
-                .addGap(36, 36, 36)
-                .addComponent(Grade, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel11)
-                                    .addComponent(jLabel12))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(SubID, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                                    .addComponent(Type)))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel10)
-                                .addGap(46, 46, 46)
-                                .addComponent(grade, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel5)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(GradingStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))))
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(4, 4, 4)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
-                    .addComponent(SubID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Type, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel12))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(GradingStatus, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(grade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
-                .addGap(136, 136, 136)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Grade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-
-        jLabel9.setText("Student ID :");
-
-        jLabel1.setText("First Name:");
-
-        jLabel2.setText("Surname:");
-
-        jLabel4.setText("Coursework ID:");
-
-        jLabel6.setText("Due Date:");
-
-        EMC.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EMCActionPerformed(evt);
-            }
-        });
-
-        Search.setText("Search");
-        Search.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SearchActionPerformed(evt);
-            }
-        });
-
-        jLabel7.setText("Enter Course ID:");
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 11, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(26, 26, 26))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addContainerGap()
-                                .addComponent(EMC, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(jLabel8)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addGap(16, 16, 16)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel9)
-                                .addComponent(jLabel1)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel2)))
-                    .addComponent(jLabel6))
-                .addGap(36, 36, 36)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(Surname, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
-                            .addComponent(First)
-                            .addComponent(CID)
-                            .addComponent(DueDate)
-                            .addComponent(SID))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(253, 253, 253))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(UpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(Search, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel7)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(23, Short.MAX_VALUE)
-                .addComponent(jLabel7)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(EMC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(Search)
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel9)
-                                    .addComponent(SID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel1)
-                                    .addComponent(First, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel2)
-                                    .addComponent(Surname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(14, 14, 14)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLabel4)
-                                    .addComponent(CID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(DueDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel6)))
-                            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(88, 88, 88)
-                        .addComponent(UpdateBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(37, 37, 37))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(jLabel8)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 277, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))))
-        );
-
-        pack();
-    }// </editor-fold>                        
-
-    private void UpdateBtnActionPerformed(java.awt.event.ActionEvent evt) {                                          
-        // TODO add your handling code here:
-        try{
-            //Create variables for the location ooof the database, username and password
-            String db = "jdbc:derby://localhost:1527/Student";
-            String Admin1 = null; //Admin1
-            String password = null; //password
-            //connect to the database
-            Connection conn = DriverManager.getConnection(db, "Admin1", "password");
-            Statement ste = conn.createStatement();
-            //SQL statement to allow the staff to update the grade and status to corresponding ID
-            String update = "UPDATE SUNMISSION1 SET GRADE= '"+grade.getText()+"',STATUS = '"+GradingStatus.getSelectedItem()+""
-                    + "'WHERE SUBMISSION_ID = '"+SubID.getText()+"'";
-            //execute the SQL statement
-            ste.execute(update);
-            List();
-            //pop up saying the grade   and the status has been updated.
-            JOptionPane.showMessageDialog(null,"The Grade and Status has been successfully updated");
-            
-        }
-        catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,ex.toString());
-        }
-    }                                         
-
-    private void GradingStatusActionPerformed(java.awt.event.ActionEvent evt) {                                              
-        // TODO add your handling code here:
-    }                                             
-
-    private void courseIDValueChanged(javax.swing.event.ListSelectionEvent evt) {                                      
-        // TODO add your handling code here:
-        try{
-            String db = "jdbc:derby://localhost:1527/Student";
-            String Admin1 = null; //admin1
-            String password = null; //password
-            
-            Connection conn = DriverManager.getConnection(db, "Admin1", "password");
-            Statement ste = conn.createStatement();
-            //SQL statement to show all the course ID in the list
-            String sid = "SELECT * FROM SUNMISSION1 WHERE SUBMISSION_ID = '"+courseID.getSelectedValue()+"'";
-            ResultSet rs = ste.executeQuery(sid);
-            
-            DefaultListModel List = new DefaultListModel();
-            while(rs.next()){
-                //finds the correct data from the submission table.
-                //the number is the number of column in that table
-                SubID.setText(rs.getString(1));
-                SID.setText(rs.getString(2));
-                CID.setText(rs.getString(3));
-                grade.setText(rs.getString(5));
-                GradingStatus.setSelectedItem(rs.getString(4));
-                
-            }
-            String nm = "SELECT * FROM STUDENT WHERE STUDENT_ID = '"+SID.getText()+"'";
-            ResultSet R = ste.executeQuery(nm);
-            while(R.next()){
-                //gets first name and surname from the student table
-                First.setText(R.getString(2));
-                Surname.setText(R.getString(3));
-            }
-            String ty = "SELECT * FROM COURSEWORK1 WHERE COURSEWORK_ID = '"+courseID.getSelectedValue()+"'";
-            ResultSet T = ste.executeQuery(ty);
-            while(T.next()){
-                //gets the type and due date from the coursework table
-                Type.setText(T.getString(3));
-                DueDate.setText(T.getString(5));
-            }
-    }
-        catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,ex.toString());
-        }        
-    }                                     
-
-    private void EMCActionPerformed(java.awt.event.ActionEvent evt) {                                    
-        // TODO add your handling code here:
-    }                                   
-
-    private void SearchActionPerformed(java.awt.event.ActionEvent evt) {                                       
-        // TODO add your handling code here:
-        /*try{
-            String db = "jdbc:derby://localhost:1527/Student";
-            String Admin1 = null;
-            String password = null;
-            
-            Connection conn = DriverManager.getConnection(db, "Admin1", "password");
-            Statement ste = conn.createStatement();
-            
-            String search = "SELECT COURSEWORK_ID FROM SUBMISSION WHERE COURSEWORK_ID = '"+EMC.getText()+"'";
-            ste.executeQuery(search);
-            //pop up saying the booking has been updated
-            List();
-        }
-        catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,ex.toString());
-        }*/
-        int searchDB = courseID.getNextMatch(EMC.getText(), 0, Position.Bias.Forward);
-        courseID.setSelectedIndex(searchDB);
-    }                                      
-
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(StatusCheck.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(StatusCheck.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(StatusCheck.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(StatusCheck.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new StatusCheck().setVisible(true);
-            }
-        });
-    }
-    final void List(){
-        //to create the list on the form
-        try{
-            String db = "jdbc:derby://localhost:1527/Student";
-            String Admin1 = null; //admin1
-            String password = null; //password
-            
-            Connection conn = DriverManager.getConnection(db, "Admin1", "password");
-            Statement ste = conn.createStatement();
-            //SQL statement to show all the submissions within the table
-            String sid = "SELECT * FROM SUNMISSION1";
-            //execute the SQL statement
-            ResultSet rs = ste.executeQuery(sid);
-            
-            DefaultListModel List = new DefaultListModel();
-            while(rs.next()){
-                //the list shows the 3rd column in the submission table
-                //which is the the coursework ID
-                List.addElement(rs.getString(1));
-            }
-            //refreshes the list
-            courseID.setModel(List);
-            
-    }
-        catch(SQLException ex){
-            JOptionPane.showMessageDialog(null,ex.toString());
-        }
-    }
-    
-
-    // Variables declaration - do not modify                     
-    private javax.swing.JTextField CID;
-    private javax.swing.JTextField DueDate;
-    private javax.swing.JTextField EMC;
-    private javax.swing.JTextField First;
-    private javax.swing.JTextField Grade;
-    private javax.swing.JComboBox<String> GradingStatus;
-    private javax.swing.JTextField SID;
-    private javax.swing.JButton Search;
-    private javax.swing.JTextField SubID;
-    private javax.swing.JTextField Surname;
-    private javax.swing.JTextField Type;
-    private javax.swing.JButton UpdateBtn;
+    private javax.swing.JButton back;
     private javax.swing.JList<String> courseID;
     private javax.swing.JTextField grade;
     private javax.swing.JLabel jLabel1;
